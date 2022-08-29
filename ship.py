@@ -10,6 +10,7 @@ class Ship():
 
         # load ship image
         self.image = pygame.image.load('images/ship.bmp')
+        self.image.set_colorkey((255, 255, 255)) #прозрачный фон - transparent background
         self.rect = self.image.get_rect()
 
         # set default position

@@ -7,4 +7,4 @@ class Settings():
         # screen settings group:
         self.screen_width = 1280
         self.screen_height = 800
-        self.bg_color = (230, 230, 230) # default screen background color
+        self.bg_color = (204, 229, 255) # default screen background color

@@ -43,12 +43,12 @@ class AlienInvasion():
             self.__check_events()
             self.__update_screen()
 
-
-if __name__ == '__main__':
+def main():
     ai = AlienInvasion()
 
     # start window
     ai.run_game()
-    
 
-    
+
+if __name__ == '__main__':
+    main()
