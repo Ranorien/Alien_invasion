@@ -3,6 +3,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 
+
 class AlienInvasion():
     """main class"""
 
@@ -23,8 +24,28 @@ class AlienInvasion():
             """Check events of keyboard and mouse"""
             for event in pygame.event.get():
                 # print(event) #shows events IDs in terminal
-                if event.type == pygame.QUIT:
-                    sys.exit()
+                match event.type:
+                    case pygame.QUIT:
+                        sys.exit()
+
+                    case pygame.KEYDOWN:
+                        match event.key:
+                            case pygame.K_ESCAPE:
+                                sys.exit()
+
+                            case pygame.K_RIGHT:
+                                self.ship.moving_right = True
+
+                            case pygame.K_LEFT:
+                                self.ship.moving_left = True
+
+                    case pygame.KEYUP:
+                        match event.key:
+                            case pygame.K_RIGHT:
+                                self.ship.moving_right = False
+
+                            case pygame.K_LEFT:
+                                self.ship.moving_left = False
 
     def __update_screen(self):
         """update screen"""
@@ -41,6 +62,7 @@ class AlienInvasion():
         """main loop on the screen"""
         while True:
             self.__check_events()
+            self.ship.update()
             self.__update_screen()
 
 def main():
