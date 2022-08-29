@@ -27,6 +27,7 @@ class AlienInvasion():
                     sys.exit()
 
     def __update_screen(self):
+        """update screen"""
         # Set default color
         self.screen.fill(self.settings.bg_color)
 
@@ -42,7 +43,6 @@ class AlienInvasion():
             self.__check_events()
             self.__update_screen()
 
-            
 
 if __name__ == '__main__':
     ai = AlienInvasion()
