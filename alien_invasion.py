@@ -2,6 +2,7 @@ import sys
 import pygame
 from settings import Settings
 from ship import Ship
+from bullet import Bullet
 
 
 class AlienInvasion():
@@ -15,10 +16,13 @@ class AlienInvasion():
 
         # set paramters of screen
         self.screen = pygame.display.set_mode((self.settings.default_screen_width, self.settings.default_screen_height))
-        pygame.display.set_caption('My the first game - Alien Invasion for my son Vlad with love')
+        pygame.display.set_caption('My the first game - "Alien Invasion" - for my son Vlad with love')
 
         # create object type Ship
         self.ship = Ship(self)
+
+        # create group of bullets
+        self.bullets = pygame.sprite.Group()
 
     def __check_keydown_events(self, event):
         match event.key:
@@ -45,6 +49,9 @@ class AlienInvasion():
             case pygame.K_LEFT:
                 self.ship.moving_left = True
 
+            case pygame.K_SPACE:
+                self.__fire_bullet()
+
     def __check_keyup_events(self, event):
         match event.key:
             case pygame.K_RIGHT:
@@ -67,6 +74,12 @@ class AlienInvasion():
                     case pygame.KEYUP:
                         self.__check_keyup_events(event)
 
+    def __fire_bullet(self):
+        """create new bullet and add it to bullet's group"""
+        if len(self.bullets) < self.settings.bullet_allowed:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
+    
     def __update_screen(self):
         """update screen"""
         # Set default color
@@ -75,14 +88,28 @@ class AlienInvasion():
         # draw Ship
         self.ship.blitme()
 
+        # draw all bullets
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
+
         # apply screen changes
         pygame.display.flip()
+
+    def __update_bullets(self):
+        """update bullets in game control"""
+        self.bullets.update()
+
+        # delete inactive bullets
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
         
     def run_game(self):
         """main loop on the screen"""
         while True:
             self.__check_events()
             self.ship.update()
+            self.__update_bullets()
             self.__update_screen()
 
 
