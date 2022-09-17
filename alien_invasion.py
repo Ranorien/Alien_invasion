@@ -1,8 +1,10 @@
+import imp
 import sys
 import pygame
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
+from alien import Alien
 
 
 class AlienInvasion():
@@ -23,6 +25,11 @@ class AlienInvasion():
 
         # create group of bullets
         self.bullets = pygame.sprite.Group()
+
+        # create group of aliens
+        self.aliens = pygame.sprite.Group()
+        self.__create_fleet()
+
 
     def __check_keydown_events(self, event):
         match event.key:
@@ -79,6 +86,13 @@ class AlienInvasion():
         if len(self.bullets) < self.settings.bullet_allowed:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
+
+    def __create_fleet(self):
+        """creation of aliens fleet"""
+
+        alien = Alien(self)
+        self.aliens.add(alien)
+
     
     def __update_screen(self):
         """update screen"""
@@ -91,6 +105,9 @@ class AlienInvasion():
         # draw all bullets
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+
+        # draw aliens
+        self.aliens.draw(self.screen)
 
         # apply screen changes
         pygame.display.flip()
