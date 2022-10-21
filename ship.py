@@ -36,8 +36,14 @@ class Ship():
         self.screen_rect = ai_game.screen.get_rect()
         self.settings.screen_width = self.screen_rect.width
         self.settings.screen_height = self.screen_rect.height
+        # self.rect.midbottom = self.screen_rect.midbottom
+        # self.x = self.screen_rect.width / 2
+        self.center_ship()
+
+    def center_ship(self):
+        """set ship on center"""
         self.rect.midbottom = self.screen_rect.midbottom
-        self.x = self.screen_rect.width / 2
+        self.x = float(self.rect.x)
 
     def update(self):
         """updating of the ship position"""

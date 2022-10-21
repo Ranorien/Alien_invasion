@@ -17,11 +17,19 @@ class Settings():
 
 
         self.bg_color = (204, 229, 255) # default screen background color
-        self.ship_speed = 1.2 #speed of ship's moving
 
+        # ship settings
+        self.ship_speed = 1.2 #speed of ship's moving
+        self.ship_limit = 3
+        
         # bullet settings
-        self.bullet_speed = 1
+        self.bullet_speed = 4
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = (60, 60, 60)
         self.bullet_allowed = 5
+
+        # aliens settings
+        self.alien_speed = 0.5
+        self.fleet_drop_speed = 10
+        self.fleet_direction = 1 #-1 - left direction
