@@ -1,10 +1,12 @@
 import pygame
 
-class Ship():
+class Ship(pygame.sprite.Sprite):
     """Class for Space Ship"""
 
     def __init__(self, ai_game):
         """Init Ship a set default position"""
+        super().__init__()
+        
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
         self.settings = ai_game.settings
@@ -29,16 +31,6 @@ class Ship():
     def blitme(self):
         """draw ship in current position"""
         self.screen.blit(self.image, self.rect)
-
-    def update_after_screen_change(self, ai_game):
-        """update ship position after screen resolution changes"""
-
-        self.screen_rect = ai_game.screen.get_rect()
-        self.settings.screen_width = self.screen_rect.width
-        self.settings.screen_height = self.screen_rect.height
-        # self.rect.midbottom = self.screen_rect.midbottom
-        # self.x = self.screen_rect.width / 2
-        self.center_ship()
 
     def center_ship(self):
         """set ship on center"""
