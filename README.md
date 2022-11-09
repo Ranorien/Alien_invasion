@@ -8,3 +8,5 @@ Left/Right - mooving<br>
 Escape/Q - exit<br>
 F - fullscreen <br>
 R - run the game <br>
+
+![Alien Invasion](https://user-images.githubusercontent.com/111890967/200809679-1360df82-9f78-46f6-ad16-8f24218d4efd.png)
